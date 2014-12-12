@@ -45,24 +45,51 @@ namespace Projekt_Za_Dvnu
                     Dodaj(x.desni, broj);
             }
         }
-        public void Dodaj_u_red_za_crtanje(CvorStabla y)
+
+        //mogu ispravit pozivanje cvora i cvor.balon
+        public void Nacrtaj_Cilo_Stablo(CvorStabla x, SpriteBatch SpriteBatch,CvorStabla prosli, List<Balon> lista_balona,List<Crta>lajne)
         {
-            red_za_crtanje.Enqueue(y);
-            if (y.lijevi != null)
-                Dodaj_u_red_za_crtanje(y.lijevi);
-            if (y.desni != null)
-                Dodaj_u_red_za_crtanje(y.desni);
+            //dodavanje u listu za crtanje
+            if (prosli != null)
+            {
+                if (prosli.lijevi==x)
+                {
+                    lista_balona.Add(new Balon(prosli, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v));
+                    x.balon = new Balon(prosli, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v);
+                    lajne.Add(new Crta(Content.Load<Texture2D>("line_liva"),prosli.balon, x.balon, true));    
+                }
+                else if (prosli.desni==x)
+                {
+                    lista_balona.Add(new Balon(prosli, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v));
+                    x.balon = new Balon(prosli, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v);
+                    lajne.Add(new Crta(Content.Load<Texture2D>("line_desna"),prosli.balon, x.balon, false));
+                    
+                }
+            }
+
+            //zvanje sljedecih funkcija za crtanje
+            if (x != null)
+            {
+                if(x.lijevi!=null)
+                    Nacrtaj_Cilo_Stablo(x.lijevi, SpriteBatch, x, lista_balona, lajne);
+                if(x.desni!=null)
+                    Nacrtaj_Cilo_Stablo(x.desni, SpriteBatch, x, lista_balona, lajne);
+            }
         }
 
         public Queue<CvorStabla> red_za_crtanje;
          CvorStabla korijen;
         Random r;
         int slucajan;
-        Balon k,k1,k2,k3,k4;
-        Crta lajna,lajna2,lajna3,lajna4;
+        Balon k;
+       // Balon k,k1,k2,k3,k4;
+        //Crta lajna,lajna2,lajna3,lajna4;
        public int razmak_s,razmak_v;
         int sirina;
         int visina;
+        CvorStabla prazan_cvor;
+        List<Balon> lista_balona;
+        List<Crta> Lista_crta;
 
 
         
@@ -104,6 +131,20 @@ namespace Projekt_Za_Dvnu
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            k = new Balon(korijen, new Rectangle(sirina / 2, 0, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
+            korijen.balon = k;
+            lista_balona = new List<Balon>();
+            lista_balona.Add(k);
+            Lista_crta = new List<Crta>();
+            Nacrtaj_Cilo_Stablo(korijen, spriteBatch, prazan_cvor, lista_balona, Lista_crta);
+
+
+
+
+
+            //TESTNI DIO
+            /*
             k = new Balon(korijen,new Rectangle(sirina/2, 0, 56, 56), Content.Load<Texture2D>("Bubble_Icon"),Content.Load<SpriteFont>("SpriteFont1"));
             k1 = new Balon(korijen, k, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"),true,razmak_s,razmak_v);
             k2 = new Balon(korijen, k1, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v);
@@ -113,6 +154,7 @@ namespace Projekt_Za_Dvnu
             lajna2 = new Crta(Content.Load<Texture2D>("line_desna"), k1, k2, false);
             lajna3 = new Crta(Content.Load<Texture2D>("line_desna"), k, k3, false);
             lajna4 =  new Crta(Content.Load<Texture2D>("line_liva"), k3, k4, true);
+            */
         }
 
         /// <summary>
@@ -137,6 +179,9 @@ namespace Projekt_Za_Dvnu
 
             // TODO: Add your update logic here
 
+
+
+            /* TESSSSST*************
             if (k2.rect.Intersects(k4.rect))
             {
                 k1.rect.X -= 1;
@@ -154,7 +199,8 @@ namespace Projekt_Za_Dvnu
                     lajna3.PostaviPravokutnik();
                     lajna4.PostaviPravokutnik();
                 }
-            }
+            
+            }*/
 
             base.Update(gameTime);
         }
@@ -169,6 +215,10 @@ namespace Projekt_Za_Dvnu
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+
+
+
+            /*
             k.Draw(spriteBatch);
             k1.Draw(spriteBatch);
             k2.Draw(spriteBatch);
@@ -178,9 +228,11 @@ namespace Projekt_Za_Dvnu
             lajna2.Draw(spriteBatch);
             lajna3.Draw(spriteBatch);
             lajna4.Draw(spriteBatch);
-            
-            
-
+            */
+            foreach (Balon b in lista_balona)
+                b.Draw(spriteBatch);
+            foreach (Crta c in Lista_crta)
+                c.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

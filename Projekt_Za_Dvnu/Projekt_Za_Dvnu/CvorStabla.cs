@@ -11,6 +11,7 @@ namespace Projekt_Za_Dvnu
         public int vrijednost;
         public CvorStabla lijevi;
         public CvorStabla desni;
+        public Balon balon;
 
         public CvorStabla(int i)
         {
