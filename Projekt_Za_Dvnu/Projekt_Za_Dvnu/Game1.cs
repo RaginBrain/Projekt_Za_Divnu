@@ -58,8 +58,9 @@ namespace Projekt_Za_Dvnu
          CvorStabla korijen;
         Random r;
         int slucajan;
-        Balon k,k1,k2,k3;
-        Crta lajna,lajna2,lajna3;
+        Balon k,k1,k2,k3,k4;
+        Crta lajna,lajna2,lajna3,lajna4;
+        int razmak;
 
 
         
@@ -73,7 +74,7 @@ namespace Projekt_Za_Dvnu
         {
 
             // TODO: Add your initialization logic here
-
+            razmak = 50;
             r = new Random();
 
             red_za_crtanje = new Queue<CvorStabla>();
@@ -101,9 +102,11 @@ namespace Projekt_Za_Dvnu
             k1 = new Balon(korijen, new Rectangle(150, 250, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
             k2 = new Balon(korijen, new Rectangle(200, 300, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
             k3 = new Balon(korijen, new Rectangle(250, 250, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
+            k4 = new Balon(korijen, new Rectangle(200, 300, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
             lajna = new Crta(Content.Load<Texture2D>("line_liva"), k, k1, true);
             lajna2 = new Crta(Content.Load<Texture2D>("line_desna"), k1, k2, false);
             lajna3 = new Crta(Content.Load<Texture2D>("line_desna"), k, k3, false);
+            lajna4 =  new Crta(Content.Load<Texture2D>("line_liva"), k3, k4, true);
         }
 
         /// <summary>
@@ -128,6 +131,25 @@ namespace Projekt_Za_Dvnu
 
             // TODO: Add your update logic here
 
+            if (k2.rect.Intersects(k4.rect))
+            {
+                k1.rect.X -= 1;
+                k3.rect.X +=1;
+                k2.rect.X -= 1;
+                k4.rect.X += 1;
+                if (!k2.rect.Intersects(k4.rect))
+                {
+                    k1.rect.X -= 5;
+                    k3.rect.X += 5;
+                    k2.rect.X -= 5;
+                    k4.rect.X += 5;
+                    lajna.PostaviPravokutnik();
+                    lajna2.PostaviPravokutnik();
+                    lajna3.PostaviPravokutnik();
+                    lajna4.PostaviPravokutnik();
+                }
+            }
+
             base.Update(gameTime);
         }
 
@@ -145,9 +167,11 @@ namespace Projekt_Za_Dvnu
             k1.Draw(spriteBatch);
             k2.Draw(spriteBatch);
             k3.Draw(spriteBatch);
+            k4.Draw(spriteBatch);
             lajna.Draw(spriteBatch);
             lajna2.Draw(spriteBatch);
             lajna3.Draw(spriteBatch);
+            lajna4.Draw(spriteBatch);
             
             
 

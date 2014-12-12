@@ -54,6 +54,17 @@ namespace Projekt_Za_Dvnu
         public Balon drugi;
 
         bool livi_smjer;
+        public void PostaviPravokutnik()
+        {
+            int sirina = Math.Abs(prvi.rect.X - drugi.rect.X);
+            int visina = Math.Abs(prvi.rect.Y - drugi.rect.Y);
+            //bit je odrediti debljnu i poziciju crte, ovo bi trebalo raditi za više različitih pozicija u kutu od (270-0)
+            if (livi_smjer)
+                rect = new Rectangle((prvi.rect.Center.X - sirina + prvi.rect.Width / 4), (prvi.rect.Center.Y + prvi.rect.Width / 4), sirina - prvi.rect.Width / 2, visina - prvi.rect.Width / 2);
+            else
+                rect = new Rectangle((prvi.rect.Center.X + prvi.rect.Width / 4), (prvi.rect.Center.Y + prvi.rect.Height / 4), sirina - prvi.rect.Width / 2, visina - prvi.rect.Width / 2);
+        }
+
 
         public Crta(Texture2D t, Balon pocetni, Balon zavrsni,bool livo)
         {
