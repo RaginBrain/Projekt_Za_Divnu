@@ -36,6 +36,19 @@ namespace Projekt_Za_Dvnu
             pisi = cvor.vrijednost.ToString();
             dira_li = false;
         }
+        public Balon(CvorStabla cvor, Balon roditelj, Texture2D t, SpriteFont a,bool livi,int razmak_sirina,int razmak_visina)
+        {
+            font = a;
+            if(livi)
+                rect = new Rectangle(roditelj.rect.X-razmak_sirina,roditelj.rect.Y+razmak_visina,roditelj.rect.Width,roditelj.rect.Height);
+            else
+                rect = new Rectangle(roditelj.rect.X + razmak_sirina, roditelj.rect.Y + razmak_visina, roditelj.rect.Width, roditelj.rect.Height);
+            textrure = t;
+            c = cvor;
+            pisi = cvor.vrijednost.ToString();
+            dira_li = false;
+        }
+
         public void Update(GameTime gameTime)
         {
         }

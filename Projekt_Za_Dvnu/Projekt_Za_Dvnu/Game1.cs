@@ -60,7 +60,9 @@ namespace Projekt_Za_Dvnu
         int slucajan;
         Balon k,k1,k2,k3,k4;
         Crta lajna,lajna2,lajna3,lajna4;
-        int razmak;
+       public int razmak_s,razmak_v;
+        int sirina;
+        int visina;
 
 
         
@@ -74,7 +76,11 @@ namespace Projekt_Za_Dvnu
         {
 
             // TODO: Add your initialization logic here
-            razmak = 50;
+            sirina = graphics.PreferredBackBufferWidth;
+            visina = graphics.PreferredBackBufferHeight;
+
+            razmak_s = sirina/12;
+            razmak_v = visina / 8;
             r = new Random();
 
             red_za_crtanje = new Queue<CvorStabla>();
@@ -98,11 +104,11 @@ namespace Projekt_Za_Dvnu
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            k = new Balon(korijen,new Rectangle(200, 200, 56, 56), Content.Load<Texture2D>("Bubble_Icon"),Content.Load<SpriteFont>("SpriteFont1"));
-            k1 = new Balon(korijen, new Rectangle(150, 250, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
-            k2 = new Balon(korijen, new Rectangle(200, 300, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
-            k3 = new Balon(korijen, new Rectangle(250, 250, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
-            k4 = new Balon(korijen, new Rectangle(200, 300, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
+            k = new Balon(korijen,new Rectangle(sirina/2, 0, 56, 56), Content.Load<Texture2D>("Bubble_Icon"),Content.Load<SpriteFont>("SpriteFont1"));
+            k1 = new Balon(korijen, k, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"),true,razmak_s,razmak_v);
+            k2 = new Balon(korijen, k1, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v);
+            k3 = new Balon(korijen, k, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"),false,razmak_s,razmak_v);
+            k4 = new Balon(korijen, k3, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"),true,razmak_s,razmak_v);
             lajna = new Crta(Content.Load<Texture2D>("line_liva"), k, k1, true);
             lajna2 = new Crta(Content.Load<Texture2D>("line_desna"), k1, k2, false);
             lajna3 = new Crta(Content.Load<Texture2D>("line_desna"), k, k3, false);
