@@ -15,3 +15,5 @@ C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dv
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\obj\x86\Debug\Projekt_Za_Dvnu.exe
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\obj\x86\Debug\Projekt_Za_Dvnu.pdb
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line.xnb
+C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line_desna.xnb
+C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line_liva.xnb

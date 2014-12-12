@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\Bubble_Icon.xnb</Output>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\Bubble_Icon.xnb</Output>
       <Time>2014-12-12T00:17:46.9861565+01:00</Time>
     </Item>
     <Item>
@@ -16,17 +16,26 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
       <Time>2014-12-10T08:38:36+01:00</Time>
     </Item>
     <Item>
-      <Source>line.png</Source>
-      <Name>line</Name>
+      <Source>line_desna.png</Source>
+      <Name>line_desna</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line.xnb</Output>
-      <Time>2014-12-12T00:31:35.7016204+01:00</Time>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line_desna.xnb</Output>
+      <Time>2014-12-12T09:59:03.538698+01:00</Time>
+    </Item>
+    <Item>
+      <Source>line_liva.png</Source>
+      <Name>line_liva</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line_liva.xnb</Output>
+      <Time>2014-12-12T09:59:26.3110479+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -35,10 +44,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_DvnuContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_DvnuContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

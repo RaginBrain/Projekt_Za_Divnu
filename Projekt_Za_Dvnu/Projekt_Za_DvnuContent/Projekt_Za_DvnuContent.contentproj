@@ -44,8 +44,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="line.png">
-      <Name>line</Name>
+    <Compile Include="line_desna.png">
+      <Name>line_desna</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="line_liva.png">
+      <Name>line_liva</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

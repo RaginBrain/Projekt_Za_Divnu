@@ -12,12 +12,12 @@ using Microsoft.Xna.Framework.Media;
 namespace Projekt_Za_Dvnu
 {
     /// <summary>
-    /// This is the main type for your game
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+    /// This is the main type for your game
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -58,8 +58,8 @@ namespace Projekt_Za_Dvnu
          CvorStabla korijen;
         Random r;
         int slucajan;
-        Balon k,k1;
-        Crta lajna;
+        Balon k,k1,k2,k3;
+        Crta lajna,lajna2,lajna3;
 
 
         
@@ -97,9 +97,13 @@ namespace Projekt_Za_Dvnu
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            k = new Balon(korijen,new Rectangle(200, 200, 56, 48), Content.Load<Texture2D>("Bubble_Icon"),Content.Load<SpriteFont>("SpriteFont1"));
-            k1 = new Balon(korijen, new Rectangle(150, 250, 56, 48), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
-            lajna = new Crta(Content.Load<Texture2D>("line"), k, k1, true);
+            k = new Balon(korijen,new Rectangle(200, 200, 56, 56), Content.Load<Texture2D>("Bubble_Icon"),Content.Load<SpriteFont>("SpriteFont1"));
+            k1 = new Balon(korijen, new Rectangle(150, 250, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
+            k2 = new Balon(korijen, new Rectangle(200, 300, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
+            k3 = new Balon(korijen, new Rectangle(250, 250, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
+            lajna = new Crta(Content.Load<Texture2D>("line_liva"), k, k1, true);
+            lajna2 = new Crta(Content.Load<Texture2D>("line_desna"), k1, k2, false);
+            lajna3 = new Crta(Content.Load<Texture2D>("line_desna"), k, k3, false);
         }
 
         /// <summary>
@@ -139,7 +143,11 @@ namespace Projekt_Za_Dvnu
             spriteBatch.Begin();
             k.Draw(spriteBatch);
             k1.Draw(spriteBatch);
+            k2.Draw(spriteBatch);
+            k3.Draw(spriteBatch);
             lajna.Draw(spriteBatch);
+            lajna2.Draw(spriteBatch);
+            lajna3.Draw(spriteBatch);
             
             
 

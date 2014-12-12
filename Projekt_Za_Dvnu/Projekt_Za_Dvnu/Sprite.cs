@@ -66,7 +66,11 @@ namespace Projekt_Za_Dvnu
             int sirina=Math.Abs(pocetni.rect.X-zavrsni.rect.X);
             int visina =Math.Abs(pocetni.rect.Y-zavrsni.rect.Y);
             //bit je odrediti debljnu i poziciju crte, ovo bi trebalo raditi za više različitih pozicija u kutu od (270-0)
-            rect = new Rectangle((pocetni.rect.Center.X - sirina + pocetni.rect.Width / 4), (pocetni.rect.Center.Y + pocetni.rect.Width / 4), sirina - pocetni.rect.Width / 2, visina - pocetni.rect.Width / 2);
+            if(livo)
+             rect = new Rectangle((pocetni.rect.Center.X - sirina + pocetni.rect.Width / 4), (pocetni.rect.Center.Y + pocetni.rect.Width / 4), sirina - pocetni.rect.Width / 2, visina - pocetni.rect.Width / 2);
+            else
+                rect = new Rectangle((pocetni.rect.Center.X +pocetni.rect.Width/4), (pocetni.rect.Center.Y + pocetni.rect.Height / 4), sirina - pocetni.rect.Width / 2, visina - pocetni.rect.Width / 2);
+
         }
         public void Draw(SpriteBatch SpriteBatch)
         {
