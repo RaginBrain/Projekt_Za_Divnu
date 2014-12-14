@@ -55,14 +55,14 @@ namespace Projekt_Za_Dvnu
             {
                 if (prosli.lijevi==x)
                 {
-                    lista_balona.Add(new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"),Content.Load<Texture2D>("prazan_krug"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v));
-                    x.balon = new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v);
+                    lista_balona.Add(new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<Texture2D>("oznaceni_krug"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v));
+                    x.balon = new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<Texture2D>("oznaceni_krug"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v);
                     lajne.Add(new Crta(Content.Load<Texture2D>("line_liva"),prosli.balon, x.balon, true));
                 }
                 else if (prosli.desni==x)
                 {
-                    lista_balona.Add(new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v));
-                    x.balon = new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v);
+                    lista_balona.Add(new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<Texture2D>("oznaceni_krug"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v));
+                    x.balon = new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<Texture2D>("oznaceni_krug"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v);
                     lajne.Add(new Crta(Content.Load<Texture2D>("line_desna"),prosli.balon, x.balon, false));
                 }
             }
@@ -77,12 +77,12 @@ namespace Projekt_Za_Dvnu
             }
         }
 
+        Sprite pozadina;
+
          CvorStabla korijen;
         Random r;
         int slucajan;
         Balon k;
-       // Balon k,k1,k2,k3,k4;
-        //Crta lajna,lajna2,lajna3,lajna4;
        public int razmak_s,razmak_v;
         int sirina;
         int visina;
@@ -90,6 +90,8 @@ namespace Projekt_Za_Dvnu
         List<Balon> lista_balona;
         List<Crta> Lista_crta;
         List<int> lista_brojeva_po_redu;
+
+        MouseState previousMouseState;
 
 
         
@@ -103,6 +105,8 @@ namespace Projekt_Za_Dvnu
         {
 
             // TODO: Add your initialization logic here
+
+            pozadina = new Sprite();
 
             sirina = graphics.PreferredBackBufferWidth;
             visina = graphics.PreferredBackBufferHeight;
@@ -122,6 +126,8 @@ namespace Projekt_Za_Dvnu
                 lista_brojeva_po_redu.Add(broj_s);
                 slucajan--;
             }
+            previousMouseState = Mouse.GetState();
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -135,6 +141,9 @@ namespace Projekt_Za_Dvnu
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            pozadina.rect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            pozadina.textrure = Content.Load<Texture2D>("White_Room_bg");
+
 
             k = new Balon(korijen, new Rectangle(sirina / 2, 0, 52, 52), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
             korijen.balon = k;
@@ -142,6 +151,8 @@ namespace Projekt_Za_Dvnu
             lista_balona.Add(k);
             Lista_crta = new List<Crta>();
             Nacrtaj_Cilo_Stablo(korijen, spriteBatch, prazan_cvor, lista_balona, Lista_crta);
+
+            //provjera u sluèaju da ima kolizije balona
             foreach (Balon b in lista_balona)
             {
                 bool prikini=false;
@@ -150,34 +161,15 @@ namespace Projekt_Za_Dvnu
 
                     if (b.rect.Intersects(x.rect) && b!=x)
                     {
-
                         Initialize();
                         prikini = true;
                         break;
-
                     }
                     
                 }
                 if (prikini)
                     break;
             }
-
-
-
-
-
-            //TESTNI DIO
-            /*
-            k = new Balon(korijen,new Rectangle(sirina/2, 0, 56, 56), Content.Load<Texture2D>("Bubble_Icon"),Content.Load<SpriteFont>("SpriteFont1"));
-            k1 = new Balon(korijen, k, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"),true,razmak_s,razmak_v);
-            k2 = new Balon(korijen, k1, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v);
-            k3 = new Balon(korijen, k, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"),false,razmak_s,razmak_v);
-            k4 = new Balon(korijen, k3, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"),true,razmak_s,razmak_v);
-            lajna = new Crta(Content.Load<Texture2D>("line_liva"), k, k1, true);
-            lajna2 = new Crta(Content.Load<Texture2D>("line_desna"), k1, k2, false);
-            lajna3 = new Crta(Content.Load<Texture2D>("line_desna"), k, k3, false);
-            lajna4 =  new Crta(Content.Load<Texture2D>("line_liva"), k3, k4, true);
-            */
         }
 
         /// <summary>
@@ -201,34 +193,27 @@ namespace Projekt_Za_Dvnu
                 this.Exit();
 
             // TODO: Add your update logic here
-            
            
+            
 
-            
-                
-            
-            
-            
-            /* TESSSSST*************
-            if (k2.rect.Intersects(k4.rect))
+            foreach (Balon b in lista_balona)
             {
-                k1.rect.X -= 1;
-                k3.rect.X +=1;
-                k2.rect.X -= 1;
-                k4.rect.X += 1;
-                if (!k2.rect.Intersects(k4.rect))
+                if (new Rectangle(previousMouseState.X, previousMouseState.Y, 1, 1).Intersects(b.rect) && b.clicked == false)
                 {
-                    k1.rect.X -= 5;
-                    k3.rect.X += 5;
-                    k2.rect.X -= 5;
-                    k4.rect.X += 5;
-                    lajna.PostaviPravokutnik();
-                    lajna2.PostaviPravokutnik();
-                    lajna3.PostaviPravokutnik();
-                    lajna4.PostaviPravokutnik();
+                    b.oznacen = true;
+                    if (previousMouseState.LeftButton == ButtonState.Released && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    {
+                        b.clicked = true;
+                    }
                 }
-            
-            }*/
+                
+                else
+                    b.oznacen = false;
+                    
+                   
+            }
+            previousMouseState = Mouse.GetState();
+
 
             base.Update(gameTime);
         }
@@ -244,25 +229,16 @@ namespace Projekt_Za_Dvnu
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
+            spriteBatch.Draw(pozadina.textrure, pozadina.rect, Color.White);
 
-
-            /*
-            k.Draw(spriteBatch);
-            k1.Draw(spriteBatch);
-            k2.Draw(spriteBatch);
-            k3.Draw(spriteBatch);
-            k4.Draw(spriteBatch);
-            lajna.Draw(spriteBatch);
-            lajna2.Draw(spriteBatch);
-            lajna3.Draw(spriteBatch);
-            lajna4.Draw(spriteBatch);
-            */
             foreach (Balon b in lista_balona)
                 b.Draw(spriteBatch);
             foreach (Crta c in Lista_crta)
                 c.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
+
+            
         }
     }
 }

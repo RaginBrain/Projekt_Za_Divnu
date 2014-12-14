@@ -44,7 +44,25 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\prazan_krug.xnb</Output>
-      <Time>2014-12-14T18:24:02.7456699+01:00</Time>
+      <Time>2014-12-15T00:13:32.3331131+01:00</Time>
+    </Item>
+    <Item>
+      <Source>oznaceni_krug.png</Source>
+      <Name>oznaceni_krug</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\oznaceni_krug.xnb</Output>
+      <Time>2014-12-15T00:15:19.3872363+01:00</Time>
+    </Item>
+    <Item>
+      <Source>White_Room_bg.jpg</Source>
+      <Name>White_Room_bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\White_Room_bg.xnb</Output>
+      <Time>2014-12-15T00:48:37.2365067+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
