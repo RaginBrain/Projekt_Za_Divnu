@@ -21,6 +21,7 @@ namespace Projekt_Za_Dvnu
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
             Content.RootDirectory = "Content";
         }
 
@@ -54,16 +55,15 @@ namespace Projekt_Za_Dvnu
             {
                 if (prosli.lijevi==x)
                 {
-                    lista_balona.Add(new Balon(prosli, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v));
-                    x.balon = new Balon(prosli, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v);
-                    lajne.Add(new Crta(Content.Load<Texture2D>("line_liva"),prosli.balon, x.balon, true));    
+                    lista_balona.Add(new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"),Content.Load<Texture2D>("prazan_krug"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v));
+                    x.balon = new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<SpriteFont>("SpriteFont1"), true, razmak_s, razmak_v);
+                    lajne.Add(new Crta(Content.Load<Texture2D>("line_liva"),prosli.balon, x.balon, true));
                 }
                 else if (prosli.desni==x)
                 {
-                    lista_balona.Add(new Balon(prosli, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v));
-                    x.balon = new Balon(prosli, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v);
+                    lista_balona.Add(new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v));
+                    x.balon = new Balon(x, prosli.balon, Content.Load<Texture2D>("Bubble_Icon"), Content.Load<Texture2D>("prazan_krug"), Content.Load<SpriteFont>("SpriteFont1"), false, razmak_s, razmak_v);
                     lajne.Add(new Crta(Content.Load<Texture2D>("line_desna"),prosli.balon, x.balon, false));
-                    
                 }
             }
 
@@ -77,7 +77,6 @@ namespace Projekt_Za_Dvnu
             }
         }
 
-        public Queue<CvorStabla> red_za_crtanje;
          CvorStabla korijen;
         Random r;
         int slucajan;
@@ -90,6 +89,7 @@ namespace Projekt_Za_Dvnu
         CvorStabla prazan_cvor;
         List<Balon> lista_balona;
         List<Crta> Lista_crta;
+        List<int> lista_brojeva_po_redu;
 
 
         
@@ -103,19 +103,23 @@ namespace Projekt_Za_Dvnu
         {
 
             // TODO: Add your initialization logic here
+
             sirina = graphics.PreferredBackBufferWidth;
             visina = graphics.PreferredBackBufferHeight;
 
-            razmak_s = sirina/12;
-            razmak_v = visina / 8;
+            razmak_s = sirina/18;
+            razmak_v = visina / 12;
             r = new Random();
 
-            red_za_crtanje = new Queue<CvorStabla>();
-            korijen = new CvorStabla(r.Next(25, 75));
-            slucajan = r.Next(10, 20);
+            lista_brojeva_po_redu = new List<int>();
+
+            korijen = new CvorStabla(r.Next(40, 60));
+            slucajan = r.Next(7,15);
             while (slucajan >= 0)
             {
-                Dodaj(korijen, r.Next(1, 100));
+                int broj_s = r.Next(1, 100);
+                Dodaj(korijen, broj_s);
+                lista_brojeva_po_redu.Add(broj_s);
                 slucajan--;
             }
             base.Initialize();
@@ -132,12 +136,31 @@ namespace Projekt_Za_Dvnu
 
             // TODO: use this.Content to load your game content here
 
-            k = new Balon(korijen, new Rectangle(sirina / 2, 0, 56, 56), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
+            k = new Balon(korijen, new Rectangle(sirina / 2, 0, 52, 52), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
             korijen.balon = k;
             lista_balona = new List<Balon>();
             lista_balona.Add(k);
             Lista_crta = new List<Crta>();
             Nacrtaj_Cilo_Stablo(korijen, spriteBatch, prazan_cvor, lista_balona, Lista_crta);
+            foreach (Balon b in lista_balona)
+            {
+                bool prikini=false;
+                foreach (Balon x in lista_balona)
+                {
+
+                    if (b.rect.Intersects(x.rect) && b!=x)
+                    {
+
+                        Initialize();
+                        prikini = true;
+                        break;
+
+                    }
+                    
+                }
+                if (prikini)
+                    break;
+            }
 
 
 
@@ -178,9 +201,14 @@ namespace Projekt_Za_Dvnu
                 this.Exit();
 
             // TODO: Add your update logic here
+            
+           
 
-
-
+            
+                
+            
+            
+            
             /* TESSSSST*************
             if (k2.rect.Intersects(k4.rect))
             {

@@ -17,3 +17,4 @@ C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dv
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Divnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line.xnb
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line_desna.xnb
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line_liva.xnb
+C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\prazan_krug.xnb

@@ -7,6 +7,9 @@ using System.Text;
 
 namespace Projekt_Za_Dvnu
 {
+    public class Broj
+    {
+    }
     public class Sprite
     {
         public Rectangle rect;
@@ -19,13 +22,13 @@ namespace Projekt_Za_Dvnu
 
     public class Balon : Sprite
     {
+        Texture2D prazno_misto;
         SpriteFont font;
         CvorStabla c;
         string pisi;
-        Vector2 tor;
-        Vector2 tol;
-        Vector2 tod;
-        bool dira_li;
+       public float lvl;
+       public bool liv;
+       public bool clicked;
 
         public Balon(CvorStabla cvor,Rectangle r,Texture2D t,SpriteFont a)
         {
@@ -34,19 +37,27 @@ namespace Projekt_Za_Dvnu
             textrure = t;
             c = cvor;
             pisi = cvor.vrijednost.ToString();
-            dira_li = false;
+            lvl= 3f;
+            clicked = true;
         }
-        public Balon(CvorStabla cvor, Balon roditelj, Texture2D t, SpriteFont a,bool livi,int razmak_sirina,int razmak_visina)
+        public Balon(CvorStabla cvor, Balon roditelj, Texture2D t,Texture2D prazno, SpriteFont a,bool livi,int razmak_sirina,int razmak_visina)
         {
+            if (roditelj.lvl > 1.01)
+                lvl = roditelj.lvl - roditelj.lvl / 3;
+            else
+                lvl = roditelj.lvl;
+
+
             font = a;
             if(livi)
-                rect = new Rectangle(roditelj.rect.X-razmak_sirina,roditelj.rect.Y+razmak_visina,roditelj.rect.Width,roditelj.rect.Height);
+                rect = new Rectangle(roditelj.rect.X - (int)(razmak_sirina * lvl + Math.Pow(lvl+0.4,5)), roditelj.rect.Y + (int)(razmak_visina * (1.8 - lvl / 2) + Math.Pow(lvl,4)), roditelj.rect.Width, roditelj.rect.Height);
             else
-                rect = new Rectangle(roditelj.rect.X + razmak_sirina, roditelj.rect.Y + razmak_visina, roditelj.rect.Width, roditelj.rect.Height);
+                rect = new Rectangle(roditelj.rect.X + (int)(razmak_sirina * lvl + Math.Pow(lvl+0.4,5)), roditelj.rect.Y + (int)(razmak_visina * (1.8 - lvl / 2) + Math.Pow(lvl, 4)), roditelj.rect.Width, roditelj.rect.Height);
             textrure = t;
             c = cvor;
             pisi = cvor.vrijednost.ToString();
-            dira_li = false;
+            prazno_misto = prazno;
+            
         }
 
         public void Update(GameTime gameTime)
@@ -54,8 +65,13 @@ namespace Projekt_Za_Dvnu
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textrure,rect,Color.White);
-            spriteBatch.DrawString(font,pisi,new Vector2(rect.X+rect.Width/3,rect.Y+rect.Height/3),Color.Green);
+            if (clicked)
+            {
+                spriteBatch.Draw(textrure, rect, Color.White);
+                spriteBatch.DrawString(font, pisi, new Vector2(rect.X + rect.Width / 3, rect.Y + rect.Height / 3), Color.Green);
+            }
+            else
+                spriteBatch.Draw(prazno_misto, rect, Color.White);
         }
 
 
@@ -66,14 +82,15 @@ namespace Projekt_Za_Dvnu
         public Balon prvi;
         public Balon drugi;
 
-        bool livi_smjer;
+        public bool livi_smjer;
         public void PostaviPravokutnik()
         {
             int sirina = Math.Abs(prvi.rect.X - drugi.rect.X);
             int visina = Math.Abs(prvi.rect.Y - drugi.rect.Y);
             //bit je odrediti debljnu i poziciju crte, ovo bi trebalo raditi za više različitih pozicija u kutu od (270-0)
             if (livi_smjer)
-                rect = new Rectangle((prvi.rect.Center.X - sirina + prvi.rect.Width / 4), (prvi.rect.Center.Y + prvi.rect.Width / 4), sirina - prvi.rect.Width / 2, visina - prvi.rect.Width / 2);
+                rect = new Rectangle((drugi.rect.X+sirina/4), (drugi.rect.Y-visina/4), sirina - prvi.rect.Width / 2, visina - prvi.rect.Width / 2);
+            
             else
                 rect = new Rectangle((prvi.rect.Center.X + prvi.rect.Width / 4), (prvi.rect.Center.Y + prvi.rect.Height / 4), sirina - prvi.rect.Width / 2, visina - prvi.rect.Width / 2);
         }

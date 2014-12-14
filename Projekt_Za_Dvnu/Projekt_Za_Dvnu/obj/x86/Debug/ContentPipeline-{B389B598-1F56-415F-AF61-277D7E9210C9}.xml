@@ -37,6 +37,15 @@
       <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\line_liva.xnb</Output>
       <Time>2014-12-12T09:59:26.3110479+01:00</Time>
     </Item>
+    <Item>
+      <Source>prazan_krug.png</Source>
+      <Name>prazan_krug</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\prazan_krug.xnb</Output>
+      <Time>2014-12-14T18:24:02.7456699+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{B389B598-1F56-415F-AF61-277D7E9210C9}</ContentProjectGUID>
