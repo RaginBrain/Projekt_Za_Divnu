@@ -20,3 +20,5 @@ C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvn
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\prazan_krug.xnb
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\oznaceni_krug.xnb
 C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\White_Room_bg.xnb
+C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\krug_za_pogadanje.xnb
+C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\reset.xnb

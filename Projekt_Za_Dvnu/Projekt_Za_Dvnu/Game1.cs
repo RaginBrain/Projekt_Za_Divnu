@@ -78,6 +78,11 @@ namespace Projekt_Za_Dvnu
         }
 
         Sprite pozadina;
+        SpriteFont spriteFont2;
+        Texture2D krug_za_pogadanje;
+        Sprite reset;
+
+
 
          CvorStabla korijen;
         Random r;
@@ -90,6 +95,7 @@ namespace Projekt_Za_Dvnu
         List<Balon> lista_balona;
         List<Crta> Lista_crta;
         List<int> lista_brojeva_po_redu;
+        
 
         MouseState previousMouseState;
 
@@ -107,6 +113,7 @@ namespace Projekt_Za_Dvnu
             // TODO: Add your initialization logic here
 
             pozadina = new Sprite();
+            reset = new Sprite();
 
             sirina = graphics.PreferredBackBufferWidth;
             visina = graphics.PreferredBackBufferHeight;
@@ -123,7 +130,8 @@ namespace Projekt_Za_Dvnu
             {
                 int broj_s = r.Next(1, 100);
                 Dodaj(korijen, broj_s);
-                lista_brojeva_po_redu.Add(broj_s);
+                if(broj_s != korijen.vrijednost && !lista_brojeva_po_redu.Contains(broj_s))
+                    lista_brojeva_po_redu.Add(broj_s);
                 slucajan--;
             }
             previousMouseState = Mouse.GetState();
@@ -143,6 +151,11 @@ namespace Projekt_Za_Dvnu
             // TODO: use this.Content to load your game content here
             pozadina.rect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             pozadina.textrure = Content.Load<Texture2D>("White_Room_bg");
+            spriteFont2 = Content.Load<SpriteFont>("SpriteFont1");
+            krug_za_pogadanje = Content.Load<Texture2D>("krug_za_pogadanje");
+            reset.rect = new Rectangle(sirina - sirina / 15, visina /50, 48, 48);
+            reset.textrure = Content.Load<Texture2D>("reset");
+
 
 
             k = new Balon(korijen, new Rectangle(sirina / 2, 0, 52, 52), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
@@ -193,8 +206,11 @@ namespace Projekt_Za_Dvnu
                 this.Exit();
 
             // TODO: Add your update logic here
-           
-            
+
+            if (new Rectangle(previousMouseState.X, previousMouseState.Y, 1, 1).Intersects(reset.rect) &&previousMouseState.LeftButton == ButtonState.Released && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                Initialize();
+            }
 
             foreach (Balon b in lista_balona)
             {
@@ -203,7 +219,11 @@ namespace Projekt_Za_Dvnu
                     b.oznacen = true;
                     if (previousMouseState.LeftButton == ButtonState.Released && Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
-                        b.clicked = true;
+                        if (lista_brojeva_po_redu[0].ToString() == b.pisi)
+                        {
+                            b.clicked = true;
+                            lista_brojeva_po_redu.RemoveAt(0);
+                        }
                     }
                 }
                 
@@ -230,6 +250,20 @@ namespace Projekt_Za_Dvnu
             spriteBatch.Begin();
 
             spriteBatch.Draw(pozadina.textrure, pozadina.rect, Color.White);
+            spriteBatch.Draw(reset.textrure, reset.rect, Color.White);
+
+            if (lista_brojeva_po_redu.Count > 2) 
+                spriteBatch.DrawString(spriteFont2, lista_brojeva_po_redu[2].ToString(), new Vector2(sirina/45,50),Color.CadetBlue);
+            spriteBatch.Draw(krug_za_pogadanje, new Rectangle(sirina /120, 40, 45, 45), Color.White);
+
+            if (lista_brojeva_po_redu.Count > 1) 
+                spriteBatch.DrawString(spriteFont2, lista_brojeva_po_redu[1].ToString(), new Vector2(sirina / 12, 50), Color.CadetBlue);
+            spriteBatch.Draw(krug_za_pogadanje, new Rectangle(sirina / 14, 40, 45, 45), Color.White);
+
+
+            if (lista_brojeva_po_redu.Count > 0) 
+                spriteBatch.DrawString(spriteFont2, lista_brojeva_po_redu[0].ToString(), new Vector2(sirina/7,50), Color.IndianRed);
+            spriteBatch.Draw(krug_za_pogadanje, new Rectangle(sirina / 8 + sirina / 120, 40, 45, 45),Color.White);
 
             foreach (Balon b in lista_balona)
                 b.Draw(spriteBatch);

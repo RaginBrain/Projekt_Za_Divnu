@@ -5,3 +5,5 @@ Content\line_liva.xnb
 Content\prazan_krug.xnb
 Content\oznaceni_krug.xnb
 Content\White_Room_bg.xnb
+Content\krug_za_pogadanje.xnb
+Content\reset.xnb

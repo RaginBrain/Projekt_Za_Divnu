@@ -31,7 +31,7 @@ namespace Projekt_Za_Dvnu
         Texture2D prazno_misto;
         SpriteFont font;
         CvorStabla c;
-        string pisi;
+       public string pisi;
        public float lvl;
        public bool liv;
        public bool clicked;

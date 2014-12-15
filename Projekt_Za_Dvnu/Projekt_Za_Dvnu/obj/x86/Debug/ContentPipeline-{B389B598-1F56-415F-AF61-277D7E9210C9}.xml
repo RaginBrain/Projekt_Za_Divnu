@@ -62,7 +62,25 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\White_Room_bg.xnb</Output>
-      <Time>2014-12-15T00:48:37.2365067+01:00</Time>
+      <Time>2014-12-15T11:23:37.5127142+01:00</Time>
+    </Item>
+    <Item>
+      <Source>krug_za_pogadanje.png</Source>
+      <Name>krug_za_pogadanje</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\krug_za_pogadanje.xnb</Output>
+      <Time>2014-12-15T10:39:01.4122842+01:00</Time>
+    </Item>
+    <Item>
+      <Source>reset.png</Source>
+      <Name>reset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\reset.xnb</Output>
+      <Time>2014-12-15T11:29:08.6494695+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
