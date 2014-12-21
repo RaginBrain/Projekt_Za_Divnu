@@ -82,6 +82,33 @@
       <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\reset.xnb</Output>
       <Time>2014-12-15T11:29:08.6494695+01:00</Time>
     </Item>
+    <Item>
+      <Source>button_inorder.png</Source>
+      <Name>button_inorder</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\button_inorder.xnb</Output>
+      <Time>2014-12-21T10:28:51.4351916+01:00</Time>
+    </Item>
+    <Item>
+      <Source>button_post.png</Source>
+      <Name>button_post</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\button_post.xnb</Output>
+      <Time>2014-12-21T10:29:19.6271248+01:00</Time>
+    </Item>
+    <Item>
+      <Source>button_preord.png</Source>
+      <Name>button_preord</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ante\Google disk\Desktop\Projekt_Za_Dvnu\Projekt_Za_Dvnu\Projekt_Za_Dvnu\bin\x86\Debug\Content\button_preord.xnb</Output>
+      <Time>2014-12-21T10:28:23.084256+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{B389B598-1F56-415F-AF61-277D7E9210C9}</ContentProjectGUID>

@@ -7,3 +7,6 @@ Content\oznaceni_krug.xnb
 Content\White_Room_bg.xnb
 Content\krug_za_pogadanje.xnb
 Content\reset.xnb
+Content\button_inorder.xnb
+Content\button_post.xnb
+Content\button_preord.xnb

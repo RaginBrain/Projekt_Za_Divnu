@@ -47,6 +47,15 @@ namespace Projekt_Za_Dvnu
             lvl= 3f;
             clicked = true;
         }
+        public Balon(Rectangle r, Texture2D t, SpriteFont a,int broj)
+        {
+            font = a;
+            rect = r;
+            textrure = t;
+            pisi = broj.ToString();
+            lvl = 3f;
+            clicked = true;
+        }
         public Balon(CvorStabla cvor, Balon roditelj, Texture2D t,Texture2D prazno,Texture2D oz, SpriteFont a,bool livi,int razmak_sirina,int razmak_visina)
         {
             if (roditelj.lvl > 1.01)
@@ -78,6 +87,18 @@ namespace Projekt_Za_Dvnu
             {
                 spriteBatch.Draw(textrure, rect, Color.White);
                 spriteBatch.DrawString(font, pisi, new Vector2((int)(rect.X + rect.Width/3.5f), (int)(rect.Y + rect.Height / 3.5f)), Color.Green);
+            }
+            else if (oznacen)
+                spriteBatch.Draw(oznaceno, rect, Color.White);
+            else
+                spriteBatch.Draw(prazno_misto, rect, Color.White);
+        }
+        public void DrawVece(SpriteBatch spriteBatch)
+        {
+            if (clicked)
+            {
+                spriteBatch.Draw(textrure, new Rectangle(rect.X-10,rect.Y-10,rect.Width+20,rect.Height+20), Color.White);
+                spriteBatch.DrawString(font, pisi, new Vector2((int)(rect.X + rect.Width / 3.5f), (int)(rect.Y + rect.Height / 3.5f)), Color.Green);
             }
             else if (oznacen)
                 spriteBatch.Draw(oznaceno, rect, Color.White);

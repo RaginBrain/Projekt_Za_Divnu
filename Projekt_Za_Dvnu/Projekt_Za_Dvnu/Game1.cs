@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -23,6 +24,41 @@ namespace Projekt_Za_Dvnu
             graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
+        }
+
+        public void Preorder(CvorStabla x, List<int>lst)
+        {
+
+            lst.Add(x.vrijednost);
+            if (x.lijevi!=null)
+                Preorder(x.lijevi,lst);
+            if (x.desni != null)
+                Preorder(x.desni,lst);
+        }
+
+        public void Postorder(CvorStabla x, List<int> lst)
+        {
+            
+            if (x.lijevi != null )
+                Postorder(x.lijevi, lst);
+            if (x.desni != null )
+                Postorder(x.desni, lst);
+            
+            lst.Add(x.vrijednost);
+        }
+
+        public void Inorder(CvorStabla x, List<int> lst)
+        {
+
+            if (x.lijevi != null )
+                Inorder(x.lijevi, lst);
+
+
+            lst.Add(x.vrijednost);
+
+            if (x.desni != null)
+                Inorder(x.desni, lst);
+           
         }
 
 
@@ -81,8 +117,11 @@ namespace Projekt_Za_Dvnu
         SpriteFont spriteFont2;
         Texture2D krug_za_pogadanje;
         Sprite reset;
+        Stopwatch sat;
+        Sprite preord,postord,inord;
+        
 
-
+        List<int> nacin_ispisa;
 
          CvorStabla korijen;
         Random r;
@@ -95,6 +134,8 @@ namespace Projekt_Za_Dvnu
         List<Balon> lista_balona;
         List<Crta> Lista_crta;
         List<int> lista_brojeva_po_redu;
+
+        List<Balon> lista_b_ispis;
         
 
         MouseState previousMouseState;
@@ -114,10 +155,18 @@ namespace Projekt_Za_Dvnu
 
             pozadina = new Sprite();
             reset = new Sprite();
+            inord = new Sprite();
+            postord = new Sprite();
+            preord = new Sprite();
+            nacin_ispisa = new List<int>();
+            sat = new Stopwatch();
+            sat.Start();
+
+            lista_b_ispis = new List<Balon>();
 
             sirina = graphics.PreferredBackBufferWidth;
             visina = graphics.PreferredBackBufferHeight;
-
+           
             razmak_s = sirina/18;
             razmak_v = visina / 12;
             r = new Random();
@@ -156,7 +205,17 @@ namespace Projekt_Za_Dvnu
             reset.rect = new Rectangle(sirina - sirina / 15, visina /50, 48, 48);
             reset.textrure = Content.Load<Texture2D>("reset");
 
+            //namjestanje botuna
+            inord.rect = new Rectangle(-250, 100, 100, 35);
+            inord.textrure = Content.Load<Texture2D>("button_inorder");
 
+            postord.rect = new Rectangle(-250, 150, 100, 35);
+            postord.textrure = Content.Load<Texture2D>("button_post");
+
+            preord.rect = new Rectangle(-250, 200, 100, 35);
+            preord.textrure = Content.Load<Texture2D>("button_preord");
+
+           
 
             k = new Balon(korijen, new Rectangle(sirina / 2, 0, 52, 52), Content.Load<Texture2D>("Bubble_Icon"), Content.Load<SpriteFont>("SpriteFont1"));
             korijen.balon = k;
@@ -212,6 +271,54 @@ namespace Projekt_Za_Dvnu
                 Initialize();
             }
 
+
+            //botuni za ispis
+            if (lista_brojeva_po_redu.Count == 0)
+            {
+                preord.rect.X = 20;
+                postord.rect.X = 20;
+                inord.rect.X = 20;
+            }
+            else
+            {
+                preord.rect.X = -250;
+                postord.rect.X = -250;
+                inord.rect.X = -250;
+            }
+            if (new Rectangle(previousMouseState.X, previousMouseState.Y, 1, 1).Intersects(preord.rect) && previousMouseState.LeftButton == ButtonState.Released && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                lista_b_ispis.Clear();
+                nacin_ispisa.Clear();
+                Preorder(korijen, nacin_ispisa);
+            }
+            if (new Rectangle(previousMouseState.X, previousMouseState.Y, 1, 1).Intersects(inord.rect) && previousMouseState.LeftButton == ButtonState.Released && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                lista_b_ispis.Clear();
+                nacin_ispisa.Clear();
+                Inorder(korijen, nacin_ispisa);
+            }
+            if (new Rectangle(previousMouseState.X, previousMouseState.Y, 1, 1).Intersects(postord.rect) && previousMouseState.LeftButton == ButtonState.Released && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                lista_b_ispis.Clear();
+                nacin_ispisa.Clear();
+                Postorder(korijen, nacin_ispisa);
+            }
+
+            
+            if (nacin_ispisa.Count > 0 && sat.ElapsedMilliseconds>1200 )
+            {
+
+                sat.Restart();
+                if(lista_b_ispis.Count>0)
+                    lista_b_ispis.Add(new Balon(new Rectangle(lista_b_ispis[lista_b_ispis.Count-1].rect.X - 45, visina - 60, 40, 45), korijen.balon.textrure, spriteFont2,nacin_ispisa[0]));
+                else
+                    lista_b_ispis.Add(new Balon( new Rectangle(sirina - 60, visina - 60, 40, 45), korijen.balon.textrure, spriteFont2,nacin_ispisa[0]));
+                nacin_ispisa.RemoveAt(0);
+            }
+
+
+            //**********
+
             foreach (Balon b in lista_balona)
             {
                 if (new Rectangle(previousMouseState.X, previousMouseState.Y, 1, 1).Intersects(b.rect) && b.clicked == false)
@@ -228,10 +335,10 @@ namespace Projekt_Za_Dvnu
                 }
                 
                 else
-                    b.oznacen = false;
-                    
-                   
+                    b.oznacen = false;    
             }
+            
+
             previousMouseState = Mouse.GetState();
 
 
@@ -252,6 +359,12 @@ namespace Projekt_Za_Dvnu
             spriteBatch.Draw(pozadina.textrure, pozadina.rect, Color.White);
             spriteBatch.Draw(reset.textrure, reset.rect, Color.White);
 
+            //crtanje botuna za ispis
+            spriteBatch.Draw(inord.textrure, inord.rect, Color.White);
+            spriteBatch.Draw(postord.textrure, postord.rect, Color.White);
+            spriteBatch.Draw(preord.textrure, preord.rect, Color.White);
+
+
             if (lista_brojeva_po_redu.Count > 2) 
                 spriteBatch.DrawString(spriteFont2, lista_brojeva_po_redu[2].ToString(), new Vector2(sirina/45,50),Color.CadetBlue);
             spriteBatch.Draw(krug_za_pogadanje, new Rectangle(sirina /120, 40, 45, 45), Color.White);
@@ -266,9 +379,18 @@ namespace Projekt_Za_Dvnu
             spriteBatch.Draw(krug_za_pogadanje, new Rectangle(sirina / 8 + sirina / 120, 40, 45, 45),Color.White);
 
             foreach (Balon b in lista_balona)
-                b.Draw(spriteBatch);
+            {
+                if (nacin_ispisa.Count > 0 && b.pisi == nacin_ispisa[0].ToString())
+                    b.DrawVece(spriteBatch);
+               else
+                    b.Draw(spriteBatch);
+            }
+
             foreach (Crta c in Lista_crta)
                 c.Draw(spriteBatch);
+            foreach (Balon b in lista_b_ispis)
+                b.Draw(spriteBatch);
+
             spriteBatch.End();
             base.Draw(gameTime);
 
